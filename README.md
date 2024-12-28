@@ -2,8 +2,7 @@
 
 ## Description
 Listing apartments app
-
-Example: This project is a property listing web application that allows users to browse apartments and view their details. It includes search and filter functionalities to find apartments by unit number, status.
+This project is a property listing web application that allows users to browse apartments and view their details. It includes search and filter functionalities to find apartments by unit number, status.
 
 
 ## Installation
