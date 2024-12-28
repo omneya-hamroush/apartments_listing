@@ -36,4 +36,22 @@ try {
     res.status(500).json({ error: error.message });
 }
 });
+
+router.post('/apartments', async (req, res) => {
+const { unit_number, price, size,building_number, status, sale_type, compound_id } = req.body;
+if (!unit_number || !price || !size || !building_number || !status || !sale_type || !compound_id ) {
+    return res.status(400).json({ message: 'Missing required fields' });
+}
+
+try {
+    const result = await pool.query(
+    'insert into apartment (unit_number, price, size, building_number, status, sale_type, compound_id) values ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    [unit_number, price, size, building_number, status, sale_type, compound_id]
+    );
+    res.status(201).json(result.rows[0]);
+} catch (error) {
+    console.error('Error adding apartment:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+});
 module.exports = router;
