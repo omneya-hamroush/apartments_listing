@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchApartmentDetails } from '../../utils/api';
+import styles from './id.module.css';
 
 export default function ApartmentDetails({ apartmentId }) {
   const [apartment, setApartment] = useState(null);
@@ -17,16 +18,16 @@ export default function ApartmentDetails({ apartmentId }) {
     fetchApartment();
   }, [apartmentId]);
 
-  if (!apartment) return <div>Loading...</div>;
-  if (!apartment) return <div>Apartment not found</div>;
+  if (!apartment) return <div className={styles.container}>Loading...</div>;
+  if (!apartment) return <div className={styles.container}>Apartment not found</div>;
 
   return (
-    <div>
-      <h1>Apartment Details</h1>
-      <p>Unit Number: {apartment.unit_number}</p>
-      <p>Price: ${apartment.price}</p>
-      <p>Size: {apartment.size} sqft</p>
-      <p>Status: {apartment.status}</p>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Apartment Details</h1>
+      <p className={styles.info}>Unit Number: {apartment.unit_number}</p>
+      <p className={styles.info}>Price: ${apartment.price}</p>
+      <p className={styles.info}>Size: {apartment.size} sqft</p>
+      <p className={styles.info}>Status: {apartment.status}</p>
     </div>
   );
 }
