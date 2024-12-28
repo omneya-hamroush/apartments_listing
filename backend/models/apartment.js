@@ -1,6 +1,6 @@
-// models/Apartment.js
+// models/partment.js
 module.exports = (sequelize, DataTypes) => {
-    const Apartment = sequelize.define('apartment', {
+    const apartment = sequelize.define('apartment', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -45,7 +45,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 'DEVELOPER_SALE', 
     },
+    
     });
 
-    return Apartment;
+
+    return apartment;
 };
