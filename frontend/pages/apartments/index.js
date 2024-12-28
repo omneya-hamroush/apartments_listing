@@ -24,16 +24,19 @@ export default function ApartmentList() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Apartment List</h1>
-      <div className={styles.grid}>
+      <h1 className={styles.title}>Apartments List</h1>
+      <div className={styles.apartmentList}>
         {apartments.map((apartment) => (
-          <div key={apartment.id} className={styles.card}>
+          <div key={apartment.id} className={styles.apartmentCard}>
+            {/* <p>{apartment.image_url}</p> */}
+            <img
+              src={apartment.image_url }
+              alt={apartment.unit_number}
+              className={styles.apartmentImage}
+            />
             <Link href={`/apartments/${apartment.id}`}>
-              <a className={styles.cardContent}>
-                <h2>{apartment.unit_number}</h2>
-                <p>Price: ${apartment.price}</p>
-                <p>Size: {apartment.size} sqft</p>
-                <p>Status: {apartment.status}</p>
+              <a>
+                {apartment.unit_number} - ${apartment.price}
               </a>
             </Link>
           </div>

@@ -24,12 +24,36 @@ export default function ApartmentDetails({ apartmentId }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Apartment Details</h1>
-      <p className={styles.info}>Unit Number: {apartment.unit_number}</p>
-      <p className={styles.info}>Price: ${apartment.price}</p>
-      <p className={styles.info}>Size: {apartment.size} sqft</p>
-      <p className={styles.info}>Status: {apartment.status}</p>
+      {/* <p>{apartment.image_url}</p> */}
+      <img
+        src={apartment.image_url }
+        alt={apartment.unit_number}
+        className={styles.apartmentImage}
+      />
+      <p className={styles.info}>
+        <span>Unit Number:</span> {apartment.unit_number}
+      </p>
+      <p className={styles.info}>
+        <span>Price:</span> ${apartment.price}
+      </p>
+      <p className={styles.info}>
+        <span>Size:</span> {apartment.size} sqft
+      </p>
+      <p className={styles.info}>
+        <span>Status:</span> {apartment.status}
+      </p>
+      <p className={styles.info}>
+        <span>Building Number:</span> {apartment.building_number}
+      </p>
+      <p className={styles.info}>
+        <span>Compound ID:</span> {apartment.compound_id}
+      </p>
+      <p className={styles.info}>
+        <span>Sale Type:</span> {apartment.sale_type}
+      </p>
     </div>
   );
+  
 }
 
 export async function getServerSideProps({ params }) {
