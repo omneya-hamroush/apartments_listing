@@ -54,4 +54,42 @@ try {
     res.status(500).json({ error: 'Internal Server Error' });
 }
 });
+
+router.get('/apartment/search', async (req, res) => {
+try {
+    const { unit_number, status, sale_type, min_price, max_price } = req.query;
+
+    // Build the dynamic query
+    let query = 'SELECT * FROM apartment WHERE 1=1';
+    const queryParams = [];
+
+    if (unit_number) {
+    query += ' AND unit_number = $' + (queryParams.length + 1);
+    queryParams.push(unit_number);
+    }
+    if (status) {
+    query += ' AND status = $' + (queryParams.length + 1);
+    queryParams.push(status);
+    }
+    if (sale_type) {
+    query += ' AND sale_type = $' + (queryParams.length + 1);
+    queryParams.push(sale_type);
+    }
+    if (min_price) {
+    query += ' AND price >= $' + (queryParams.length + 1);
+    queryParams.push(min_price);
+    }
+    if (max_price) {
+    query += ' AND price <= $' + (queryParams.length + 1);
+    queryParams.push(max_price);
+    }
+    console.log("QUERYYYYYYYY", query)
+    const result = await pool.query(query, queryParams);
+    res.status(200).json(result.rows);
+} catch (error) {
+    console.error('Error fetching apartments with filters:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+});
+
 module.exports = router;

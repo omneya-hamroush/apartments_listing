@@ -12,15 +12,22 @@ return res.json();
 // utils/api.js
 
 export const fetchApartmentDetails = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:3001/api/apartments/${id}`);
-      if (!res.ok) {
-        throw new Error('Failed to fetch apartment details');
-      }
-      return await res.json();
-    } catch (error) {
-      console.error('Error in fetchApartmentDetails:', error);
-      throw error;
+try {
+    const res = await fetch(`http://localhost:3001/api/apartments/${id}`);
+    if (!res.ok) {
+    throw new Error('Failed to fetch apartment details');
     }
-  };
-  
+    return await res.json();
+} catch (error) {
+    console.error('Error in fetchApartmentDetails:', error);
+    throw error;
+}
+};
+
+export const searchApartments = async (filters) => {
+const query = new URLSearchParams(filters).toString();
+const res = await fetch(`${API_URL}/apartment/search?${query}`);
+if (!res.ok) throw new Error('Failed to fetch filtered apartments');
+return res.json();
+};
+
