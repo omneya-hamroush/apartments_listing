@@ -17,7 +17,7 @@ Before running the project, ensure you have the following installed:
 1. Clone the repository:
     ```bash
     git clone git@github.com:omneya-hamroush/apartments_listing.git
-    cd yourproject
+    cd apartments_system
     ```
 
 2. Start the docker containers:
